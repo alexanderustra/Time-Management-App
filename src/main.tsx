@@ -16,5 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ToDo />
     <hr />
     <Notes />
+    <br />
+    <br />
   </React.StrictMode>,
 )

@@ -1,7 +1,7 @@
 .clock-bar-container {
     margin: auto;
     width: 400px;
-    margin-top: 80px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import { CrossIcon, CheckIcon } from './Icons';
 import { Select } from "./Select";
 import '../routine.css';
