@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubbler+One&family=Lato:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+    color: #464646;
+    font-family: 'Lato', sans-serif;
+}
+body {
+    text-align: center;
+    background-color: #EDEAE5;
+    margin: auto;
+    max-width: 600px;
+}
+p {
+    user-select: none;
+}
+h1 ,h2{
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 100;
+}
+h1 {
+    font-size: 40px;
+}
+h2 {
+    font-size: 24px;
+}
+button {
+    width: fit-content;
+    height: 30px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 3px;
+    color: #EDEAE5;
+    background-color: #00638D;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+button:focus {
+    outline: none;
+}
+
+hr {
+    height: 1px;
+    background-color: #00638D;
+}
+svg {
+    margin-top: 7px;
+}
+
+input {
+    margin: auto;
+    margin-top: -120px;
+    margin-left: 55px;
+    width: 235px;
+    height: 35px;
+}
+textarea {
+    margin: auto;
+    margin-top: -100px;
+    font-family: 16px;
+    width: 235px;
+    height: 106px;
+}
+textarea , input {
+    font-size: 16px;
+    outline: none;
+    color: #EDEAE5;
+    background-color: transparent;
+    border: 1px solid #EDEAE5;
+    border-radius: 5px;
+}
+input::placeholder , textarea::placeholder {
+    color: #EDEAE5;
+    font-size: 16px;
+  }
+  
+.creationModal button {
+    margin-top: -30px;
+}
+.creationModal {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    translate:-50%;
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 88%;
+    height: 384px;
+    border-radius: 10px;
+    color: #EDEAE5;
+    background-color: #00638D;
+    -webkit-box-shadow: 0px 3px 10px 5px rgba(0,0,0,0.41);
+-moz-box-shadow: 0px 3px 10px 5px rgba(0,0,0,0.41);
+box-shadow: 0px 3px 10px 5px rgba(0,0,0,0.41);
+}
+.creationModal h2 {
+    width: 100%;
+}
+
+.openModalBtn {
+    position:  absolute;
+    z-index: 1;
+    top: 73%;
+    left: 50%;
+    translate: -50%;
+}
+.modalButton {
+    margin: auto;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    translate: -50%;
+    color: #00638D;
+    background-color: #EDEAE5;
+}
+.menu {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    right: 0;
+    top: 242px;
+    width: 100px;
+    height: fit-content;
+    border-radius: 5px 0px 0px 5px;
+    background-color: #00638D;
+}
+.menu button {
+    width: 100%;
+    height: 40px;
+    margin: auto;
+}
+@media (min-width: 700px) {
+    .creationModal {
+        width: 550px;
+    }
+    .creationModal textarea{
+        width: 400px;
+    }
+}

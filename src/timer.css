@@ -1,0 +1,64 @@
+.clock-bar-container {
+    margin: auto;
+    width: 400px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .day-label {
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 100;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .time-bar {
+    position: relative;
+    width: 80%;
+    height: 30px;
+    background-color: #464646;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #0c7ca6;
+    border-radius: 15px 0 0 15px;
+    transition: width 1s linear;
+  }
+  
+  .markers {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  
+  .marker {
+    position: relative;
+    font-size: 0.8rem;
+    color: #EDEAE5;
+    margin-left: -1px;
+  }
+  
+  .marker::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 10px;
+    background-color: #EDEAE5;
+    margin-left: 1px;
+  }
+  

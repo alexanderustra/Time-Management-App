@@ -1,0 +1,81 @@
+#notesContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    list-style-type: none;
+    padding: 0; 
+}
+#notesContainer p {
+    border: none;
+}
+#modal input {
+    margin: auto;
+    margin-top: -90px;
+}
+#modal textarea {
+    margin-top: -140px;
+}
+#notesContainer li {
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 180px;
+    height: fit-content;
+    max-height: 240px;
+    min-height: 100px;
+    border-radius: 5px;
+    border: 1.5px solid #00638D;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#notesContainer li h3 {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    text-align: left;
+}
+#notesContainer li hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 95%;
+    height: 1px;
+    transform: scaleY(0.5);
+    background-color: #00638D;
+}
+#notesContainer li p {
+    text-align: left;
+    font-size: 15px;
+    margin-top: 0px;
+}
+#openedNote {
+    position: absolute;
+    top: 25%;
+    transform: translate(-50%);
+    left: 50%;
+    z-index: 1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 15px;
+    width: 88%;
+    height: 470px;
+    overflow: auto;
+    background-color: #00638D;
+    margin: auto;
+}
+#openedNote button {
+    background-color: transparent;
+    box-shadow: none;
+}
+#openedNote * {
+    color: #EDEAE5;
+}
+
+#openedNote p {
+    text-align: left;
+}
+[contenteditable="true"] {
+    outline: none;
+}

@@ -1,0 +1,29 @@
+#toDoCreationModal button {
+    margin-top: -170px;
+}
+#toDoCreationModal input {
+    margin: auto;
+    margin-top: -150px;
+}
+#toDoContainer {
+    padding:0;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 95%;
+    box-sizing: border-box;
+}
+#toDoContainer li {
+    margin: auto;
+    margin-top: 15px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 97%;
+    height: fit-content;
+    min-height: 35px;
+    font-size: 16px;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #00638D;
+    box-sizing: border-box;
+}
+
