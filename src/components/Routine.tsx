@@ -7,7 +7,7 @@ interface Task {
   description: string;
   hour: string;
   minutes: string;
-  completed: boolean;
+  completed: boolean | null;
 }
 
 interface CreationModalProps {
@@ -30,7 +30,53 @@ export const Routine = () => {
   useEffect(() => {
     localStorage.setItem('routine', JSON.stringify(allTasks));
   }, [allTasks]);
+
+  useEffect(() => {
+    const resetTasks = () => {
+      const resetAllTasks = allTasks.map((task) => ({
+        ...task,
+        completed: null
+      }));
+      setAllTasks(resetAllTasks);
+    };
   
+    const checkForNewDay = () => {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      
+      if (hours === 0 && minutes === 0) {
+        resetTasks();
+      }
+    };
+  
+    const intervalId = setInterval(checkForNewDay, 60000);
+  
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [allTasks]); 
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const currentHours = now.getHours().toString().padStart(2, '0');
+      const currentMinutes = now.getMinutes().toString().padStart(2, '0');
+      const currentTime = parseInt(currentHours + currentMinutes);
+
+      const updatedTasks = allTasks.map((task) => {
+        const taskTime = parseInt(task.hour + task.minutes); 
+        if (taskTime <= currentTime && task.completed === null) {
+          return { ...task, completed: false };
+        }
+        return task;
+      });
+
+      setAllTasks(updatedTasks);
+    }, 60000); 
+
+    return () => clearInterval(interval);
+  }, [allTasks]);
 
   const NewTaskModal = ({ index }: CreationModalProps) => {
     const [description, setDescription] = useState<string>('');
@@ -61,9 +107,9 @@ export const Routine = () => {
       else {
         const updatedTasks = [...allTasks];
         if (index !== null && index !== undefined) {
-          updatedTasks[index] = { description, hour, minutes, completed: false };
+          updatedTasks[index] = { description, hour, minutes, completed: null };
         } else {
-          updatedTasks.push({ description, hour, minutes, completed: false });
+          updatedTasks.push({ description, hour, minutes, completed: null });
         }
         setAllTasks(updatedTasks);
         setShowModal(false);
@@ -113,7 +159,6 @@ export const Routine = () => {
   };
 
   const handleEditTask = (index: number) => {
-    console.log(index)
     setShowModal(true);
     setCurrentMenuIndex(index);
   };
@@ -124,9 +169,22 @@ export const Routine = () => {
   };
 
   const handleCheckbox = (index: number) => {
-    const updatedTasks = allTasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
-    );
+    const updatedTasks = allTasks.map((task, i) => {
+      if (i === index) {
+        let newCompletedState;
+        if (task.completed === true) {
+          newCompletedState = false; 
+        } else if (task.completed === false) {
+          newCompletedState = null;  
+        } else {
+          newCompletedState = true;   
+        }
+  
+        return { ...task, completed: newCompletedState };
+      }
+      return task;
+    });
+    
     setAllTasks(updatedTasks);
   };
 
@@ -147,11 +205,20 @@ export const Routine = () => {
       <ul>
         {allTasks.map((task, index) => (
           <li key={index} onContextMenu={(e) => handleSelectTask(e, index)}>
-            <div className="checkbox" onClick={() => handleCheckbox(index)}>
-              {task.completed ? <CheckIcon /> : <CrossIcon />}
+            <div className="checkbox" onClick={() => handleCheckbox(index)}
+              style={task.completed != null ? 
+                { borderColor: task.completed ? '#20DBAE' : '#EC6767' } 
+                : {}}> 
+            {task.completed != null && (task.completed ? <CheckIcon /> : <CrossIcon />)}
             </div>
-            <p>{task.description}</p>
-            <div className="timeContainer">
+            <p  style={task.completed != null ? 
+                { borderColor: task.completed ? '#20DBAE' : '#EC6767' } 
+                : {}}
+            >{task.description}</p>
+            <div className="timeContainer"
+            style={task.completed != null ? 
+                { borderColor: task.completed ? '#20DBAE' : '#EC6767' } 
+                : {}}>
               <h3>{task.hour}</h3>
               <h3>{task.minutes}</h3>
             </div>
