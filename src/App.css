@@ -145,4 +145,11 @@ box-shadow: 0px 3px 10px 5px rgba(0,0,0,0.41);
     .openModalBtn {
         top: 85%;
     }
+    body {
+        width: 97%;
+    }
+    .clock-bar-container {
+        width: 100%;
+    }
+    
 }
