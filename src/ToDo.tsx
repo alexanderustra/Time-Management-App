@@ -118,7 +118,7 @@ const ToDo = () => {
         ))}
       </ul>
       <button
-         className={showAddTaskModal ? 'openModalBtn' : ''}
+         className={showAddTaskModal ? 'openModalBtn' : 'closedModalBtn'}
         onClick={(e) => {
           e.stopPropagation();
           setShowAddTaskModal(!showAddTaskModal);

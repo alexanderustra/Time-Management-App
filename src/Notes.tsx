@@ -220,7 +220,7 @@ export const Notes = () => {
       </ul>
       {showNoteModal && <NoteModal handleCreateNote={handleCreateNote} />}
       <button
-        className={showNoteModal ? 'openModalBtn' : ''}
+        className={showNoteModal ? 'openModalBtn' : 'closedModalBtn'}
         onClick={(e) => {
           e.stopPropagation();
           setShowNoteModal(!showNoteModal);

@@ -10,42 +10,10 @@ h2 {
     color: #EDEAE5;
 }
 
-.titleH2 {
-    color: #464646;
-}
-
 section hr {
     height: .5px;
 }
 
-/* Modal de Rutinas */
-#routineModal {
-    /* Contenedor de inputs */
-    #inputsContainer {
-        text-align: left;
-        margin-top: -50px;
-        width: 80%;
-        margin-left: 50px;
-    }
-
-    /* Placeholder en inputs y textarea */
-    input::placeholder, 
-    textarea::placeholder {
-        color: #EDEAE5; 
-        opacity: 1;  
-    }
-
-    /* Estilo para inputs en el modal */
-    input {
-        margin: 5px;
-        height: 26px;
-        font-size: 14px;
-        color: #EDEAE5;
-        width: 70px;
-    }
-}
-
-/* Listas */
 li {
     box-sizing: border-box;
     margin-left: -40px;
@@ -55,16 +23,6 @@ li {
     text-align: center;
 } 
 
-/* Checkbox dentro de la lista */
-.checkbox {
-    margin: auto;
-    width: 27px;
-    height: 27px;
-    border: 1px solid #00638D;
-    border-radius: 5px;
-}
-
-/* Párrafo dentro de la lista */
 li p {
     user-select: none;
     word-wrap: break-word;
@@ -78,8 +36,17 @@ li p {
     border: 1px solid #00638D;
     border-radius: 5px;
 }
+.titleH2 {
+    color: #464646;
+}
 
-/* Contenedor del tiempo en la lista */
+.checkbox {
+    margin: auto;
+    width: 27px;
+    height: 27px;
+    border: 1px solid #00638D;
+    border-radius: 5px;
+}
 .timeContainer {
     margin: auto;
     width: 27px;
@@ -100,13 +67,27 @@ li p {
     margin-bottom: -4px;
     font-size: 14px;
 }
+
 #inputsContainer {
     position: relative;
-    top: -30px;
     display: flex;
     flex-wrap: nowrap;
+    padding-left: 5%;
+    box-sizing: border-box;
+    top: -30px;
+    text-align: left;
+    margin-top: -50px;
+    width: 100%;
 }
+
 #routineModalBtn {
     top: 62%;
     left: 70%;
+}
+
+@media (min-width: 600px) {
+    #inputsContainer {
+        padding-left: 50px;
+    }
+    
 }

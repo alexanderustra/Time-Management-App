@@ -95,8 +95,8 @@ export const Routine = () => {
         setMinutes(task.minutes);
       } else {
         setDescription('');
-        setHour('');
-        setMinutes('');
+        setHour('10');
+        setMinutes('30');
       }
     }, [index, allTasks]);
 
@@ -233,7 +233,7 @@ export const Routine = () => {
       </ul>
       {showModal && <NewTaskModal index={currentMenuIndex} />}
       <button 
-      className={showModal ? 'openModalBtn' : ''}
+      className={showModal ? 'openModalBtn' : 'closedModalBtn'}
       onClick={()=>{
         setCurrentMenuIndex(null);
         setShowModal(!showModal);

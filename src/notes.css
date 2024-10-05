@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1fr; 
     list-style-type: none;
     padding: 0; 
+    margin-bottom: 0px;
 }
 #notesContainer p {
     border: none;
