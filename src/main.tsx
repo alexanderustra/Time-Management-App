@@ -6,6 +6,7 @@ import {Notes} from './Notes.tsx'
 import ToDo from './ToDo.tsx'
 
 import './App.css'
+import { DaySummary } from './daySumary/DaySummary.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -15,6 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <hr />
     <ToDo />
     <hr />
+    <DaySummary />
+    <br />
     <Notes />
     <br />
     <br />
