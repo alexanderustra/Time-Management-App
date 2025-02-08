@@ -1,0 +1,74 @@
+/*BARRA DE PROGRESO*/
+
+.progressBar {
+    background-color: #464646;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progressBarBack {
+    border-radius: 5px;
+}
+.timelines {
+    background-color: #EC6767;
+}
+.pauses {
+    background-color: #628CCA;
+}
+.pauses p {
+    position: relative;
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+}
+.percentage {
+    box-sizing: border-box;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #20DBAE;
+}
+/*MODAL PARA CREAR TIMER*/
+.selectContainer {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.selectContainer  div div {
+    width: 100px;
+}
+.selectContainer  div div ul {
+    margin: auto;
+}
+.creationModal {
+    background-color: #00638D;
+    border-radius: 5px;
+    color: #EDEAE5;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.creationModal p {
+    color: #EDEAE5;
+}
+.creationModal button {
+    color: #00638D;
+    background-color: #EDEAE5;
+}
+/*MODAL DE ALARMA*/
+.alarmModal {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #00638D;
+    width: 100%;
+    height: fit-content;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.alarmModal button  {
+    color: #00638D;
+    background-color: #EDEAE5;
+    margin-left:100px;
+    margin-right: 100px;
+}
