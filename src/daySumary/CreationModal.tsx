@@ -1,17 +1,19 @@
 import { useState } from "react";
 import IconGrid from "./IconGrid";
+import styles from './daySumary.module.css'
 
 interface Activity {
   name: string;
   icon: string;
-  color: string; // Cambiado a string
+  color: string; 
 }
 
 interface CreationModalProps {
+  setActive: (value: boolean) => void; 
   setCreatedActivities: React.Dispatch<React.SetStateAction<Activity[]>>;
 }
 
-export const CreationModal = ({ setCreatedActivities }: CreationModalProps) => {
+export const CreationModal = ({ setCreatedActivities,setActive }: CreationModalProps) => {
 
   // Función para generar un color pastel
   const getRandomPastelHex = (): string => {
@@ -42,6 +44,7 @@ export const CreationModal = ({ setCreatedActivities }: CreationModalProps) => {
         icon: "",
         color: getRandomPastelHex(), // Genera un nuevo color para la siguiente actividad
       });
+      setActive(false)
     } else {
       setShowIconGrid(true);
     }
@@ -53,7 +56,7 @@ export const CreationModal = ({ setCreatedActivities }: CreationModalProps) => {
   };
 
   return (
-    <div className="creationModal">
+    <div className={styles.creationModal}>
       <h2>Name</h2>
       {showIconGrid ? (
         <IconGrid onClick={handleSelectIcon} />

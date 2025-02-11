@@ -19,7 +19,6 @@ export const CreationModal = ({ setShowModal }: CreationModalProps) => {
     elapsed: 0,
     timelines: [{ title: "title", time: 0 }],
     pauses: [{ start: 0, end: 0 }],
-    alarm:false
   });
   const hoursOptions = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
   const minutesOptions = Array.from({ length: 61 }, (_, i) => (i).toString().padStart(2, '0'));
@@ -126,7 +125,7 @@ export const CreationModal = ({ setShowModal }: CreationModalProps) => {
   
   return (
     <div className={styles.creationModal}>
-      <p>Time</p>
+      <h2>Time</h2>
       <div className={styles.selectContainer}>
       <Select
         error={!!errors.end}
@@ -150,7 +149,7 @@ export const CreationModal = ({ setShowModal }: CreationModalProps) => {
 
       </div>
   
-      <p>Timelines</p>
+      <h2>Timelines</h2>
       {data.timelines.map((tl, index) => (
         <div key={index}>
           <input
@@ -183,9 +182,9 @@ export const CreationModal = ({ setShowModal }: CreationModalProps) => {
           </div>
         </div>
       ))}
-      <button onClick={handleAddTimeline}>More</button>
+      <button onClick={handleAddTimeline}>New</button>
   
-      <p>Pauses</p>
+      <h2>Pauses</h2>
       {data.pauses.map((pause, index) => (
         <div key={index}>
           <div className={styles.selectContainer}>
@@ -233,14 +232,9 @@ export const CreationModal = ({ setShowModal }: CreationModalProps) => {
               ))}
             </Select>
           </div>
-          <p>Sound Effects</p>
-          <input 
-            type="checkbox" 
-            onChange={() => setData(prev => ({ ...prev, alarm: !prev.alarm }))} 
-          /> 
         </div>
       ))}
-      <button onClick={handleAddPause}>More</button>
+      <button onClick={handleAddPause}>New</button>
       <button onClick={() => setShowModal(false)}>Close</button>
       <button onClick={handleAddActivity}>Add</button>
     </div>

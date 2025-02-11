@@ -240,7 +240,12 @@ export const DaySummary = () => {
         })}
       </ul>
 
-      {showModal && <CreationModal setCreatedActivities={setCreatedActivities} />}
+      {showModal && (
+        <CreationModal 
+          setCreatedActivities={setCreatedActivities} 
+          setActive={setShowModal} 
+        />
+      )}
       <button onClick={() => setShowModal(!showModal)}>
         {showModal ? "Cancel" : "New Activity"}
       </button>

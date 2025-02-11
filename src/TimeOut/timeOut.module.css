@@ -52,6 +52,9 @@
     color: #00638D;
     background-color: #EDEAE5;
 }
+.creationModal input {
+    margin-bottom: 20px;
+}
 /*MODAL DE ALARMA*/
 .alarmModal {
     text-align: center;

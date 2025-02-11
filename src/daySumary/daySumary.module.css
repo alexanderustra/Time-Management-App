@@ -1,3 +1,51 @@
+.creationModal {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    white-space: wrap;
+    text-align: center;
+    justify-content: center;
+    width: 88%;
+    min-height: 204px;
+    height: fit-content;
+    max-height: 500px;
+    border-radius: 10px;
+    color: #EDEAE5;
+    overflow: auto;
+    background-color: #00638D;
+}
+.creationModal button{
+    background-color: #EDEAE5;
+    color: #00638D;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.creationModal h2 {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    color: #EDEAE5 !important;
+}
+
+.creationModal input {
+    margin: auto;
+    color: #EDEAE5;
+}
+.gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+.iconsContainer {
+    width: 100%;
+}
+.iconsContainer h2 {
+   margin-top: 20px;
+   margin-bottom: 20px;
+   font-size: 19px;
+}
+.iconsContainer svg {
+    fill:#EDEAE5;
+}
 .list {
     width: 100%;
     display: flex;

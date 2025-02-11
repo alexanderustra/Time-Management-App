@@ -79,7 +79,9 @@ li p {
     margin-top: -50px;
     width: 100%;
 }
-
+#inputsContainer   div {
+   height: 40px;
+}
 #routineModalBtn {
     top: 62%;
     left: 70%;
