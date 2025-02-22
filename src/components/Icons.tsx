@@ -11,52 +11,63 @@ export const CheckIcon = () => (
 );
 
 export const iconData = {
-  "Tecnología": [
+  "Technology": [
       "FaLaptop", "FaMobileAlt", "FaCamera", "FaKeyboard", "FaTablet", 
       "FaHeadphones", "FaGamepad", "FaTv", "FaServer", "FaMicrochip", 
       "FaDatabase", "FaCode", "FaRobot", "FaSatellite", "FaWifi", 
-      "FaPlug", "FaUsb", "FaCloud", "FaDesktop", "FaHardDrive"
+      "FaPlug", "FaUsb", "FaCloud", "FaDesktop", "FaHardDrive", 
+      "FaMouse", "FaSimCard", "FaPrint", "FaNetworkWired", "FaMicrophone", 
+      "FaBatteryFull", "FaSdCard", "FaGlobe", "FaHdd", "FaCloudDownloadAlt",
+      "FaCloudUploadAlt", "FaMicrophoneAlt", "FaBroadcastTower", "FaSitemap", "FaTerminal"
   ],
-  "Comida": [
+  "Food": [
       "FaPizzaSlice", "FaAppleAlt", "FaCoffee", "FaIceCream", "FaCarrot", 
       "FaHamburger", "FaBreadSlice", "FaDrumstickBite", "FaFish", "FaWineBottle", 
       "FaCheese", "FaCookie", "FaHotdog", "FaEgg", "FaSeedling", 
-      "FaPepperHot", "FaLemon", "FaBacon", "FaMugHot", "FaUtensils"
+      "FaPepperHot", "FaLemon", "FaBacon", "FaMugHot", "FaUtensils", 
+      "FaCandyCane", "FaWineGlass", "FaBeer", "FaCocktail", "FaApple", 
+      "FaBirthdayCake", "FaBone", "FaCarrot", "FaChampagneGlass", "FaPepper"
   ],
-  "Ejercicio": [
+  "Exercise": [
       "FaDumbbell", "FaBiking", "FaRunning", "FaSwimmer", "FaBasketballBall", 
       "FaFootballBall", "FaTableTennis", "FaSkiing", "FaSnowboarding", "FaHiking", 
       "FaBaseballBall", "FaBowlingBall", "FaVolleyballBall", "FaGolfBall", "FaSkating", 
-      "FaYoga", "FaMedal", "FaStopwatch", "FaTrophy", "FaWhistle"
+      "FaYoga", "FaMedal", "FaStopwatch", "FaTrophy", "FaWhistle", 
+      "FaFlagCheckered", "FaWeight", "FaHeartRate", "FaShoes", "FaCycling"
   ],
-  "Entretenimiento": [
+  "Entertainment": [
       "FaMusic", "FaFilm", "FaTheaterMasks", "FaGamepad", "FaHeadphones", 
       "FaBook", "FaPalette", "FaMicrophone", "FaVideo", "FaTv", 
       "FaTicketAlt", "FaChess", "FaCompactDisc", "FaGuitar", "FaDrum", 
-      "FaCameraRetro", "FaPodcast", "FaPlayCircle", "FaProjector", "FaRadio"
+      "FaCameraRetro", "FaPodcast", "FaPlayCircle", "FaProjector", "FaRadio",
+      "FaTrophy", "FaAward", "FaMagic", "FaBell", "FaMicrophoneAlt"
   ],
-  "Viajes": [
+  "Travel": [
       "FaPlane", "FaTrain", "FaCar", "FaBus", "FaShip", 
       "FaSubway", "FaTaxi", "FaWalking", "FaHiking", "FaLuggageCart", 
       "FaRoute", "FaMap", "FaCompass", "FaGlobe", "FaMountain", 
-      "FaCamping", "FaUmbrellaBeach", "FaPassport", "FaSuitcase", "FaHotel"
+      "FaCamping", "FaUmbrellaBeach", "FaPassport", "FaSuitcase", "FaHotel",
+      "FaBicycle", "FaAnchor", "FaBinoculars", "FaRoad", "FaMapSigns"
   ],
-  "Educación": [
+  "Education": [
       "FaBook", "FaGraduationCap", "FaChalkboardTeacher", "FaPen", "FaPencilAlt", 
       "FaEraser", "FaRuler", "FaHighlighter", "FaPaperclip", "FaSchool", 
       "FaLaptopCode", "FaMicroscope", "FaGlobe", "FaLanguage", "FaCalendarAlt", 
-      "FaUniversity", "FaFlask", "FaBookOpen", "FaKeyboard", "FaFileAlt"
+      "FaUniversity", "FaFlask", "FaBookOpen", "FaKeyboard", "FaFileAlt", 
+      "FaQuill", "FaScroll", "FaAtom", "FaJournalWhills", "FaBlackboard"
   ],
-  "Salud y Bienestar": [
+  "Health & Wellness": [
       "FaHeartbeat", "FaStethoscope", "FaPills", "FaPrescriptionBottle", "FaUserMd", 
       "FaHospital", "FaAmbulance", "FaSpa", "FaTooth", "FaLungs", 
       "FaBrain", "FaWeight", "FaBiking", "FaWalking", "FaHandsWash", 
-      "FaThermometer", "FaFirstAid", "FaBandAid", "FaVial", "FaSyringe"
+      "FaThermometer", "FaFirstAid", "FaBandAid", "FaVial", "FaSyringe",
+      "FaDna", "FaProcedures", "FaCapsules", "FaCrutch", "FaFileMedical"
   ],
-  "Naturaleza": [
+  "Nature": [
       "FaTree", "FaLeaf", "FaSeedling", "FaWater", "FaSun", 
       "FaCloudSun", "FaWind", "FaMountain", "FaCampground", "FaFish", 
       "FaPaw", "FaSpider", "FaHorse", "FaCrow", "FaDog", 
-      "FaCat", "FaOtter", "FaDove", "FaFrog", "FaDragon"
+      "FaCat", "FaOtter", "FaDove", "FaFrog", "FaDragon", 
+      "FaElephant", "FaFeather", "FaHippo", "FaKiwiBird", "FaMosquito"
   ]
 }

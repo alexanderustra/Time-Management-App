@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useTimer } from "./TimerContext";
 import { Select } from "../components/Select";
 import styles from './timeOut.module.css'
+
 interface CreationModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimerOn:React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 interface Errors {
   end: string;
   timelines: string[];
@@ -12,7 +15,7 @@ interface Errors {
 }
 
 
-export const CreationModal = ({ setShowModal }: CreationModalProps) => {
+export const CreationModal = ({ setShowModal,setTimerOn }: CreationModalProps) => {
   const { setTimer } = useTimer();
   const [data, setData] = useState({
     end: 0,
@@ -108,7 +111,9 @@ export const CreationModal = ({ setShowModal }: CreationModalProps) => {
   
     // Guardar los datos si todo está correcto
     localStorage.setItem("timer", JSON.stringify(data));
+    localStorage.setItem('timerOn',JSON.stringify(true))
     setTimer(data);
+    setTimerOn(true)
     setShowModal(false);
   };
 

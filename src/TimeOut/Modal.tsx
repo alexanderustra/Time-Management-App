@@ -6,7 +6,7 @@ interface ModalProps {
     setActive: (value: boolean) => void; // Recibe la función para actualizar el estado
 }
 
-export const Modal = ({ setActive ,active}: ModalProps) => {
+export const AlarmModal = ({ setActive ,active}: ModalProps) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     

@@ -26,6 +26,28 @@
     border-radius: 10px 0px 0px 10px;
     background-color: #20DBAE;
 }
+/*TIMELINE POP UP*/
+.titlePopUp {
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 40px;
+    opacity: 0;
+    visibility: hidden;
+    width: fit-content;
+    height: 30px;
+    font-weight: 800;
+    white-space: nowrap;
+    border-radius: 5px;
+    background-color:#20DBAE;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.timelines:hover > .titlePopUp {
+    opacity: 1;
+    visibility: visible;
+}
+
 /*MODAL PARA CREAR TIMER*/
 .selectContainer {
     display: flex;

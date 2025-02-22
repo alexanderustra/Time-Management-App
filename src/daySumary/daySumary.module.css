@@ -17,8 +17,8 @@
 .creationModal button{
     background-color: #EDEAE5;
     color: #00638D;
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 130px;
+    margin-left: 130px;
 }
 .creationModal h2 {
     margin: auto;
@@ -37,6 +37,9 @@
 }
 .iconsContainer {
     width: 100%;
+}
+.iconWrapper {
+    width: 50px;
 }
 .iconsContainer h2 {
    margin-top: 20px;

@@ -19,11 +19,19 @@ export const CreationModal = ({ setCreatedActivities,setActive }: CreationModalP
   const getRandomPastelHex = (): string => {
     const randomValue = () => Math.floor(127 + Math.random() * 128); // Asegura valores entre 127 y 255
     const toHex = (value: number) => value.toString(16).padStart(2, "0"); // Convierte a hexadecimal con dos dígitos
-    const r = randomValue();
-    const g = randomValue();
-    const b = randomValue();
+  
+    let r, g, b;
+  
+    do {
+      r = randomValue();
+      g = randomValue();
+      b = randomValue();
+    } while (Math.abs(r - g) < 20 && Math.abs(r - b) < 20 && Math.abs(g - b) < 20); 
+    // Reintentar si los valores son demasiado similares (color grisáceo)
+  
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   };
+  
 
   const [showIconGrid, setShowIconGrid] = useState(false);
   const [activityInfo, setActivityInfo] = useState<Activity>({

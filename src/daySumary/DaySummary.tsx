@@ -220,6 +220,7 @@ export const DaySummary = () => {
 
   return (
     <section className={styles.a}>
+      <h2 className="titleH2">Activities</h2>
       <ul>
         {createdActivities.map((activity, index) => {
           const isActive = activities.some((a) => a.name === activity.name && a.active);
