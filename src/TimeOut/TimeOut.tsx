@@ -48,10 +48,6 @@ export const TimeOut = () => {
                 return; // Si está pausado, no hace nada
             }
             setTimer((prev) => {
-                
-                console.log(paused + 
-                    'n'
-                )
                 const newElapsed = prev.elapsed + 1;
                 const newTimeLeft = prev.end * 60 - newElapsed;
     
@@ -227,7 +223,7 @@ export const TimeOut = () => {
                             startTimer();
                         }}
                     >
-                        Reiniciar
+                        Restart
                     </button>
                     <button onClick={handleDelete}>Delete</button>
                     <button onClick={handlePause}>{paused ? 'Continue':'Pause'}</button>

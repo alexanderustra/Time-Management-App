@@ -45,9 +45,9 @@ function IconGrid({ onClick }) {
                   return (
                     <div
                       key={index}
-                      title={iconName}
+                      title={iconName.slice(2)}
                       onClick={() => onClick(iconName)}
-                      className={styles.iconWrapper} // Puedes agregar estilos aquí
+                      className={styles.iconWrapper} 
                     >
                       <IconComponent size={30} color="#EDEAE5" />
                     </div>
