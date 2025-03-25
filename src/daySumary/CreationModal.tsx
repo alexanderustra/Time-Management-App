@@ -26,7 +26,7 @@ export const CreationModal = ({ setCreatedActivities,setActive }: CreationModalP
       r = randomValue();
       g = randomValue();
       b = randomValue();
-    } while (Math.abs(r - g) < 20 && Math.abs(r - b) < 20 && Math.abs(g - b) < 20); 
+    } while (Math.abs(r - g) < 50 && Math.abs(r - b) < 50 && Math.abs(g - b) < 50); 
     // Reintentar si los valores son demasiado similares (color grisáceo)
   
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;

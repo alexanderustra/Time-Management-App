@@ -44,6 +44,8 @@ export const DaySummary = () => {
   const [createdActivities, setCreatedActivities] = useState<StoredActivity[]>(
     () => JSON.parse(localStorage.getItem("activities") || "[]")
   );
+  const [showMenu,setShowMenu] = useState(false)
+  const [indexToDelete,setIndexToDelete] = useState(0)
   const [showModal, setShowModal] = useState(false);
 
   // Actualiza la hora actual cada segundo
@@ -212,6 +214,32 @@ export const DaySummary = () => {
     [calculateDuration]
   );
 
+  const handleContextMenu = (e: React.MouseEvent<HTMLLIElement>, index: number) =>{
+    e.preventDefault()
+    setShowMenu(true)
+    setIndexToDelete(index)
+  }
+  const removeItem = (indexToRemove: number) => {
+    setActivities((prev) =>
+      prev.map((activity) => ({
+        ...activity,
+        active: false,
+      }))
+    );
+    setActivities((prevItems) => {
+      const newItems = [...prevItems];
+      newItems.splice(indexToRemove, 1);
+      console.log(activities)
+      return newItems;
+    });
+    setCreatedActivities((prevItems) => {
+      const newItems = [...prevItems];
+      newItems.splice(indexToRemove, 1);
+      console.log(activities)
+      return newItems;
+    });
+  };
+  
   const formatTime = (date: Date): string => {
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
@@ -219,7 +247,8 @@ export const DaySummary = () => {
   };
 
   return (
-    <section className={styles.a}>
+    <section className={styles.a} onClick={()=>{setIndexToDelete(0) 
+    setShowMenu(false)}}>
       <h2 className="titleH2">Activities</h2>
       <ul>
         {createdActivities.map((activity, index) => {
@@ -227,8 +256,11 @@ export const DaySummary = () => {
           const IconComponent = FaIcons[activity.icon];
 
           return (
-            <li key={index}>
-              {IconComponent && (
+            <li key={index} onContextMenu={(e) => {
+              handleContextMenu(e, index)
+              e.stopPropagation()
+            }}>
+              {IconComponent && ( 
                 <div
                   title={activity.icon}
                   onClick={() => handleIconClick(activity)}
@@ -240,7 +272,19 @@ export const DaySummary = () => {
           );
         })}
       </ul>
-
+      {showMenu && (
+         <div className="menu" onClick={(e) => e.stopPropagation()}>
+         <button onClick={() => {
+            if (indexToDelete !== null && indexToDelete !== undefined) {
+              removeItem(indexToDelete);
+              setIndexToDelete(0) 
+              setShowMenu(false)
+            }
+          }}>
+            Delete
+          </button>
+       </div>
+      )}
       {showModal && (
         <CreationModal 
           setCreatedActivities={setCreatedActivities} 
