@@ -1,9 +1,9 @@
-import { act, useRef } from "react";
+import {  useRef } from "react";
 import styles from './timeOut.module.css'
 import { Alarm } from "./alarmAnimation/Alarm";
 interface ModalProps {
     active:boolean
-    setActive: (value: boolean) => void; // Recibe la función para actualizar el estado
+    setActive: (value: boolean) => void; 
 }
 
 export const AlarmModal = ({ setActive ,active}: ModalProps) => {

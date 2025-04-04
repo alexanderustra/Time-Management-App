@@ -1,5 +1,7 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import './notes.css';
+import { NoteModal } from "./CreationModal";
+import { OpenNoteModal } from "./OpenNoteModal";
 
 interface Note {
   title: string;
@@ -8,51 +10,11 @@ interface Note {
   color: string;
 }
 
-interface NoteModalProps {
-  handleCreateNote: (title: string, description: string) => void;
-}
-
 interface NoteMenuProps {
   handleDelete: () => void;
   handlePinToggle: () => void;
   isPinned: boolean;
 }
-
-interface OpenNoteModalProps {
-  note: Note;
-  onClose: () => void;
-  allNotes: Note[];
-  setAllNotes: (notes: Note[]) => void;
-  index: number;
-}
-
-const NoteModal = ({ handleCreateNote }: NoteModalProps) => {
-  const [newNoteTitle, setNewNoteTitle] = useState<string>("");
-  const [newNoteDescription, setNewNoteDescription] = useState<string>("");
-  const [itsWrong,setItsWrong] = useState<boolean>(false)
-
-
-  return (
-    <div id="modal" className="creationModal" onClick={(e) => e.stopPropagation()}>
-      <h2>New Note</h2>
-      <input style={itsWrong ? {borderColor: '#EC6767'}: {borderColor: '#EDEAE5'}} value={newNoteTitle} onChange={(e) => setNewNoteTitle(e.target.value)} type="text" placeholder="Title" />
-      <textarea style={itsWrong ? {borderColor: '#EC6767'}: {borderColor: '#EDEAE5'}} value={newNoteDescription} onChange={(e) => setNewNoteDescription(e.target.value)} placeholder="Description"></textarea>
-      <button 
-        onClick={() => {
-          if (newNoteTitle && newNoteDescription) {
-            handleCreateNote(newNoteTitle, newNoteDescription);
-            setItsWrong(false)
-          } else {
-            setItsWrong(true)
-          }
-        }} 
-        className="modalButton"
-      >
-        Add
-      </button>
-    </div>
-  );
-};
 
 const NoteMenu = ({ handleDelete, handlePinToggle, isPinned }: NoteMenuProps) => (
   <div className="menu" onClick={(e) => e.stopPropagation()}>
@@ -61,67 +23,6 @@ const NoteMenu = ({ handleDelete, handlePinToggle, isPinned }: NoteMenuProps) =>
     <button onClick={handleDelete}>Delete</button>
   </div>
 );
-
-const OpenNoteModal = ({ note, onClose, allNotes, setAllNotes, index }: OpenNoteModalProps) => {
-  const [contentEditable, setContentEditable] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(note.title);
-  const [editedDescription, setEditedDescription] = useState(note.description);
-
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-
-  const handleSave = useCallback(() => {
-    setContentEditable(false);
-    const updatedNotes = [...allNotes];
-
-    const newTitle = titleRef.current?.innerText || "";
-    const newDescription = descriptionRef.current?.innerText || "";
-
-    updatedNotes[index] = { ...updatedNotes[index], title: newTitle, description: newDescription };
-    setAllNotes(updatedNotes);
-
-    setEditedTitle(newTitle); 
-    setEditedDescription(newDescription); 
-  }, [allNotes, index, setAllNotes]);
-
-  const handleCancel = useCallback(() => {
-    setEditedTitle(note.title);
-    setEditedDescription(note.description);
-    setContentEditable(false);
-
-    if (titleRef.current) titleRef.current.innerText = note.title;
-    if (descriptionRef.current) descriptionRef.current.innerText = note.description;
-  }, [note]);
-
-  return (
-    <div id="openedNote">
-      <h3
-        ref={titleRef}
-        contentEditable={contentEditable}
-        suppressContentEditableWarning={true}
-        onClick={() => setContentEditable(true)}
-      >
-        {editedTitle}
-      </h3>
-      <p
-        ref={descriptionRef}
-        contentEditable={contentEditable}
-        suppressContentEditableWarning={true}
-        onClick={() => setContentEditable(true)} 
-      >
-        {editedDescription}
-      </p>
-      {contentEditable ? (
-        <>
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
-        </>
-      ) : (
-        <button onClick={onClose}>Close</button>
-      )}
-    </div>
-  );
-};
 
 
 export const Notes = () => {
@@ -187,7 +88,7 @@ export const Notes = () => {
             onClick={() => handleNoteClick(index)} 
             onContextMenu={(e) => handleNoteMenu(e, index)}
           >
-            <h3>{note.title} (Pinned)</h3>
+            <h3>{note.title}</h3>
             <hr />
             <p>{note.description}</p>
             {currentMenuIndex === index && (
@@ -218,15 +119,15 @@ export const Notes = () => {
           </li>
         ))}
       </ul>
-      {showNoteModal && <NoteModal handleCreateNote={handleCreateNote} />}
+      {showNoteModal && <NoteModal showModal={setShowNoteModal} handleCreateNote={handleCreateNote} />}
       <button
-        className={showNoteModal ? 'openModalBtn' : 'closedModalBtn'}
+        className="closedModalBtn"
         onClick={(e) => {
           e.stopPropagation();
           setShowNoteModal(!showNoteModal);
         }}
       >
-        {showNoteModal ? 'Close' : 'New Note'}
+        New Note
       </button>
       {openNoteIndex !== null && allNotes[openNoteIndex] && (
         <OpenNoteModal

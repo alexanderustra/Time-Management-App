@@ -60,14 +60,20 @@
 .a h2 {
  color: #464646;
 }
-.list h3 {
+.listName {
+    text-align: left;
+    min-width: 120px;
+    max-width: 120px;
     margin: 0px;
     margin-top:4px ;
     margin-right: 20px;
 }
 .time {
+    width: 70px;
+    text-align: right;
     z-index: 1;
     left: 70%;
+    margin-top: 3px;
     position: absolute;
 }
 .list div { 

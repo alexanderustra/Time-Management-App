@@ -1,9 +1,21 @@
+#toDoCreationModal {
+    z-index: 9999;
+    height: 220px;
+}
 #toDoCreationModal button {
-    margin-top: -170px;
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #00638D;
+    background-color: #EDEAE5;
+}
+#buttonsContainer {
+    width: 100%;
+    height: fit-content;
 }
 #toDoCreationModal input {
     margin: auto;
-    margin-top: -150px;
+    margin-top: -20px;
 }
 #toDoContainer {
     padding:0;

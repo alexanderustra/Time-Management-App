@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Inputs.module.css'
 
 interface SelectProps {
-    label?:any
+    label?:string
     placeholder?: string;
     onSelect?: (value: string) => void;
     children: React.ReactNode;

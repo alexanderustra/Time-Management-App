@@ -30,12 +30,7 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
     const savedTimer = localStorage.getItem("timer");
     return savedTimer
       ? JSON.parse(savedTimer)
-      : {
-          end: 40,
-          elapsed: 0,
-          timelines: [{ title: "mitad", time: 20 }],
-          pauses: [{ start: 15, end: 20 }],
-        };
+      : Error('invalid')
   });
 
   const resetTimer = () => {

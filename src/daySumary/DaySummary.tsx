@@ -248,117 +248,116 @@ export const DaySummary = () => {
 
   return (
     <section className={styles.a} onClick={()=>{setIndexToDelete(0) 
-    setShowMenu(false)}}>
-      <h2 className="titleH2">Activities</h2>
-      <ul>
-        {createdActivities.map((activity, index) => {
-          const isActive = activities.some((a) => a.name === activity.name && a.active);
-          const IconComponent = FaIcons[activity.icon];
+      setShowMenu(false)}}>
+        <h2 className="titleH2">Activities</h2>
+        <ul>
+          {createdActivities.map((activity, index) => {
+            const isActive = activities.some((a) => a.name === activity.name && a.active);
+            const IconComponent = FaIcons[activity.icon];
 
-          return (
-            <li key={index} onContextMenu={(e) => {
-              handleContextMenu(e, index)
-              e.stopPropagation()
+            return (
+              <li key={index} onContextMenu={(e) => {
+                handleContextMenu(e, index)
+                e.stopPropagation()
+              }}>
+                {IconComponent && ( 
+                  <div
+                    title={activity.icon}
+                    onClick={() => handleIconClick(activity)}
+                  >
+                    <IconComponent size={30} fill= {isActive ? activity.color : "gray" } />
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        {showMenu && (
+          <div className="menu" onClick={(e) => e.stopPropagation()}>
+          <button onClick={() => {
+              if (indexToDelete !== null && indexToDelete !== undefined) {
+                removeItem(indexToDelete);
+                setIndexToDelete(0) 
+                setShowMenu(false)
+              }
             }}>
-              {IconComponent && ( 
-                <div
-                  title={activity.icon}
-                  onClick={() => handleIconClick(activity)}
-                >
-                  <IconComponent size={30} fill= {isActive ? activity.color : "gray" } />
-                </div>
-              )}
-            </li>
+              Delete
+            </button>
+        </div>
+        )}
+        {showModal && (
+          <CreationModal 
+            setCreatedActivities={setCreatedActivities} 
+            setActive={setShowModal} 
+          />
+        )}
+        <button onClick={() => setShowModal(!showModal)}>
+          {showModal ? "Cancel" : "New Activity"}
+        </button>
+
+        <div>
+      <h2>Day Summary</h2>
+      <ul>
+        {(() => {
+          const totalDailyTime = Object.values(dailySummary).reduce(
+            (acc, duration) => acc + duration,
+            0
           );
-        })}
+
+          return Object.entries(dailySummary).map(([name, duration]) => {
+            const percentage = totalDailyTime ? (duration / totalDailyTime) * 100 : 0;
+            const activityColor = createdActivities.find((activity) => activity.name === name)?.color || "#20DBAE";
+
+            return (
+              <li key={name} className={styles.list}>
+                <h3 className={styles.listName}>{name}</h3>
+                <h3 className={styles.time}>
+                  {Math.floor(duration / 60)}h {duration % 60}m
+                </h3>
+                <div
+                  style={{
+                    width: `${percentage}%`,
+                    backgroundColor: activityColor,
+                  }}
+                ></div>
+              </li>
+            );
+          });
+        })()}
       </ul>
-      {showMenu && (
-         <div className="menu" onClick={(e) => e.stopPropagation()}>
-         <button onClick={() => {
-            if (indexToDelete !== null && indexToDelete !== undefined) {
-              removeItem(indexToDelete);
-              setIndexToDelete(0) 
-              setShowMenu(false)
-            }
-          }}>
-            Delete
-          </button>
-       </div>
-      )}
-      {showModal && (
-        <CreationModal 
-          setCreatedActivities={setCreatedActivities} 
-          setActive={setShowModal} 
-        />
-      )}
-      <button onClick={() => setShowModal(!showModal)}>
-        {showModal ? "Cancel" : "New Activity"}
-      </button>
+    </div>
 
-      <div>
-  <h2>Day Summary</h2>
-  <ul>
-    {(() => {
-      const totalDailyTime = Object.values(dailySummary).reduce(
-        (acc, duration) => acc + duration,
-        0
-      );
+    <div>
+      <h2>Week Summary</h2>
+      <ul>
+        {(() => {
+          const totalWeeklyTime = Object.values(weeklySummary).reduce(
+            (acc, duration) => acc + duration,
+            0
+          );
 
-      return Object.entries(dailySummary).map(([name, duration]) => {
-        const percentage = totalDailyTime ? (duration / totalDailyTime) * 100 : 0;
-        const activityColor = createdActivities.find((activity) => activity.name === name)?.color || "#20DBAE";
+          return Object.entries(weeklySummary).map(([name, duration]) => {
+            const percentage = totalWeeklyTime ? (duration / totalWeeklyTime) * 100 : 0;
+            const activityColor = createdActivities.find((activity) => activity.name === name)?.color || "#20DBAE";
 
-        return (
-          <li key={name} className={styles.list}>
-            <h3>{name}</h3>
-            <h3 className={styles.time}>
-              {Math.floor(duration / 60)}h {duration % 60}m
-            </h3>
-            <div
-              style={{
-                width: `${percentage}%`,
-                backgroundColor: activityColor,
-              }}
-            ></div>
-          </li>
-        );
-      });
-    })()}
-  </ul>
-</div>
-
-<div>
-  <h2>Week Summary</h2>
-  <ul>
-    {(() => {
-      const totalWeeklyTime = Object.values(weeklySummary).reduce(
-        (acc, duration) => acc + duration,
-        0
-      );
-
-      return Object.entries(weeklySummary).map(([name, duration]) => {
-        const percentage = totalWeeklyTime ? (duration / totalWeeklyTime) * 100 : 0;
-        const activityColor = createdActivities.find((activity) => activity.name === name)?.color || "#20DBAE";
-
-        return (
-          <li key={name} className={styles.list}>
-            <h3>{name}</h3>
-            <h3 className={styles.time}>
-              {Math.floor(duration / 60)}h {duration % 60}m
-            </h3>
-            <div
-              style={{
-                width: `${percentage}%`,
-                backgroundColor: activityColor,
-              }}
-            ></div>
-          </li>
-        );
-      });
-    })()}
-  </ul>
-</div>
-
-    </section>
+            return (
+              <li key={name} className={styles.list}>
+                <h3 className={styles.listName}>{name}</h3>
+                <h3 className={styles.time}>
+                  {Math.floor(duration / 60)}h {duration % 60}m
+                </h3>
+                <div
+                  style={{
+                    width: `${percentage}%`,
+                    backgroundColor: activityColor,
+                  }}
+                ></div>
+              </li>
+            );
+          });
+        })()}
+      </ul>
+    </div>
+  </section>
   );
 };

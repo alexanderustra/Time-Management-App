@@ -7,6 +7,7 @@ interface Task {
 }
 
 interface ToDoProps {
+  showModal:(value: boolean)=> void
   handleCreateTask: (title: string) => void;
 }
 
@@ -16,7 +17,7 @@ interface ListMenuProps {
   handleDelete: (index: number) => void;
 }
 
-const AddTaskModal = ({ handleCreateTask }: ToDoProps) => {
+const AddTaskModal = ({ handleCreateTask,showModal }: ToDoProps) => {
   const [taskTitle, setTaskTitle] = useState<string>("");
   const [itsWrong,setItsWrong] = useState<boolean>(false)
 
@@ -38,7 +39,10 @@ const AddTaskModal = ({ handleCreateTask }: ToDoProps) => {
     <div onClick={(e) => e.stopPropagation()} id="toDoCreationModal" className="creationModal">
       <h2>New Task</h2>
       <input style={itsWrong ? {borderColor: '#EC6767'}: {borderColor: '#EDEAE5'}} onChange={handleInputChange} type="text" value={taskTitle} />
-      <button onClick={handleAddClick} className="modalButton">Add</button>
+      <div id="buttonsContainer">
+      <button onClick={handleAddClick}>Add</button>
+      <button onClick={()=>showModal(false)}>Cancel</button>
+      </div>
     </div>
   );
 };
@@ -98,7 +102,7 @@ const ToDo = () => {
     }} >
       <h2 className="titleH2">ToDo</h2>
       {showAddTaskModal && (
-        <AddTaskModal handleCreateTask={handleCreateTask} />
+        <AddTaskModal showModal={setShowAddTaskModal} handleCreateTask={handleCreateTask} />
       )}
       <ul id="toDoContainer">
         {allTasks.map((task, index) => (
@@ -118,13 +122,13 @@ const ToDo = () => {
         ))}
       </ul>
       <button
-         className={showAddTaskModal ? 'openModalBtn' : 'closedModalBtn'}
+         className='closeModalBtn'
         onClick={(e) => {
           e.stopPropagation();
           setShowAddTaskModal(!showAddTaskModal);
         }}
       >
-        {showAddTaskModal ? 'Close' : 'Add Task'}
+        Add Task
       </button>
     </section >
   );

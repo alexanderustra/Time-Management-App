@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTimer } from './TimerContext';
 import styles from './timeOut.module.css';
 import { CreationModal } from './CreationModal';
@@ -6,7 +6,7 @@ import { AlarmModal } from './Modal';
 
 export const TimeOut = () => {
     const [showModal,setShowModal] = useState(false)
-    const { timer, setTimer, resetTimer } = useTimer();
+    const { timer, setTimer } = useTimer();
     const [timeLeft, setTimeLeft] = useState(timer.end * 60 - timer.elapsed);
     const [active,setActive] = useState(false)
     const [soundEnabled, setSoundEnabled] = useState(false); 
@@ -84,7 +84,7 @@ export const TimeOut = () => {
     const progressPercentage = ((timer.end * 60 - timeLeft) / (timer.end * 60)) * 100;
 
     // Calcula el porcentaje de una pausa o timeline
-    const percentage = (time) => (time / timer.end) * 100;
+    const percentage = (time:number) => (time / timer.end) * 100;
 
     useEffect(() => {
         
@@ -122,7 +122,7 @@ export const TimeOut = () => {
         }, 15000);
     };
     const handleEnableSound = () => {
-        setSoundEnabled(!soundEnabled); // Habilita el sonido al hacer clic en un botón
+        setSoundEnabled(!soundEnabled); 
     };
     return (
         <>
@@ -160,7 +160,7 @@ export const TimeOut = () => {
                         />
                     </div>
     
-                    {/* Mostrar timeline y pausas */}
+                    {/*timeline y pausas */}
                     <div
                         className={styles.progressBarBack}
                         style={{
@@ -211,7 +211,7 @@ export const TimeOut = () => {
                             ))}
                     </div>
     
-                    {/* Mostrar tiempo restante */}
+                    {/*tiempo restante */}
                     <div style={{ marginTop: '10px', zIndex: '2' }}>
                         Time Left: {formattedTime}
                     </div>
@@ -236,5 +236,4 @@ export const TimeOut = () => {
             )}
         </>
     );
-    
 };

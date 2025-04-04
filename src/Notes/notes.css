@@ -1,3 +1,25 @@
+/*CREATION MODAL*/
+#notesModal {
+    position: fixed;
+    white-space: wrap;
+    height: 350px;
+}
+#notesModal input {
+    margin: auto;
+    margin-top: -50px;
+    margin-bottom: 80px;
+}
+#notesModal button {
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #00638D;
+    background-color: #EDEAE5;
+}
+#buttonsContainer {
+    width: 100%;
+    height: fit-content;
+}
 #notesContainer {
     display: grid;
     grid-template-columns: 1fr 1fr; 
@@ -5,6 +27,7 @@
     padding: 0; 
     margin-bottom: 0px;
 }
+
 #notesContainer p {
     border: none;
 }

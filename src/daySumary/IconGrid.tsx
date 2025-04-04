@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import { iconData } from '../components/Icons';
 import styles from './daySumary.module.css';
 
-function IconGrid({ onClick }) {
+type IconGridProps = {
+  onClick: (iconName: string) => void;
+};
+function IconGrid({ onClick }: IconGridProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <div>
-      {/* Input de búsqueda */}
       <input
         type="text"
         placeholder="Search Icon..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
-        className={styles.searchInput} // Agrega estilos si lo deseas
+        className={styles.searchInput} 
       />
 
       <div className={styles.gridContainer}>
@@ -35,8 +37,8 @@ function IconGrid({ onClick }) {
               gridTemplateColumns: 'repeat(auto-fit, minmax(50px, 1fr))',
               gap: '10px',
             }}>
-                {filteredIcons.map((iconName, index) => {
-                  const IconComponent = FaIcons[iconName];
+                {filteredIcons.map((iconName) => {
+                  const IconComponent = FaIcons[iconName as keyof typeof FaIcons] as React.ElementType;
 
                   if (!IconComponent) {
                     return null;
@@ -44,7 +46,7 @@ function IconGrid({ onClick }) {
 
                   return (
                     <div
-                      key={index}
+                      key={iconName}
                       title={iconName.slice(2)}
                       onClick={() => onClick(iconName)}
                       className={styles.iconWrapper} 

@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import '../timer.css'
+import './clockBar.css'
 
 export const ClockBar = () => {
   const [time, setTime] = useState(new Date());
