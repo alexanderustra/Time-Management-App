@@ -159,12 +159,12 @@ export const Routine = () => {
       index={currentMenuIndex} 
       setShowModal={setShowModal} />}
       <button 
-      className={showModal ? 'openModalBtn' : 'closedModalBtn'}
+      className='closedModalBtn'
       onClick={()=>{
         setCurrentMenuIndex(null);
         setShowModal(!showModal);
       }}>
-        {showModal ? "Close" : "New Task"}
+        New Task
       </button>
     </section>
   );

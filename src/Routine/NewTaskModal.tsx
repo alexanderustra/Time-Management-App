@@ -58,7 +58,7 @@ export const NewTaskModal = ({ index,allTasks,setAllTasks,setShowModal,setCurren
     return (
       <div onClick={(e)=>{
         e.stopPropagation()
-      }} id="routineModal" className="creationModal">
+      }} id="routineModal" className="creationModal" >
         <h2>New Task</h2>
         <textarea
           style={itsWrong ? {borderColor: '#EC6767'}: {borderColor: '#EDEAE5'}}
@@ -84,7 +84,10 @@ export const NewTaskModal = ({ index,allTasks,setAllTasks,setShowModal,setCurren
               ))}
           </Select>
         </div>
-        <button className="modalButton" id="routineModalBtn" onClick={handleSubmit}>Add</button>
+       <div id="buttonsContainer">
+       <button onClick={handleSubmit}>Add</button>
+       <button onClick={()=>setShowModal(false)}>Cancel</button>
+       </div>
       </div>
     );
   };

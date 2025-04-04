@@ -67,24 +67,46 @@ li p {
     margin-bottom: -4px;
     font-size: 14px;
 }
+#routineModal {
+    min-height: 300px;
+    height: fit-content;
+}
 
 #inputsContainer {
-    position: relative;
     display: flex;
     flex-wrap: nowrap;
     padding-left: 5%;
     box-sizing: border-box;
-    top: -30px;
     text-align: left;
-    margin-top: -50px;
     width: 100%;
+    margin-top: 20px;
+    min-height: 70px;
+    height: fit-content;
 }
-#inputsContainer   div {
-   height: 40px;
+#inputsContainer  div div div {
+   height: 100px;
 }
+#inputsContainer  div div div ul {
+    margin: auto;
+ }
 #routineModalBtn {
     top: 62%;
     left: 70%;
+}
+#routineModal button {
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #00638D;
+    background-color: #EDEAE5;
+}
+#routineModal textarea {
+    margin-top: 0px;
+}
+#buttonsContainer {
+    width: 100%;
+    margin-bottom: 40px;
+    height: fit-content;
 }
 
 @media (min-width: 600px) {
