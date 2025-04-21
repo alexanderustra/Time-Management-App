@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMemo } from "react";
 import IconGrid from "./IconGrid";
 import styles from './daySumary.module.css'
-
+import { getRandomPastelHex } from "./utils";
 interface Activity {
   name: string;
   icon: string;
@@ -14,23 +14,6 @@ interface CreationModalProps {
   setActive: (value: boolean) => void;
   setCreatedActivities: SetActivities;
 }
-
-// Función para generar un color pastel
-const getRandomPastelHex = (): string => {
-  const randomValue = () => Math.floor(127 + Math.random() * 128); // Asegura valores entre 127 y 255
-  const toHex = (value: number) => value.toString(16).padStart(2, "0"); // Convierte a hexadecimal con dos dígitos
-
-  let r, g, b;
-
-  do {
-    r = randomValue();
-    g = randomValue();
-    b = randomValue();
-  } while (Math.abs(r - g) < 50 && Math.abs(r - b) < 50 && Math.abs(g - b) < 50); 
-  // Reintentar si los valores son demasiado similares (color grisáceo)
-
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-};
 
 export const CreationModal = ({ setCreatedActivities,setActive }: CreationModalProps) => {
 

@@ -1,64 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import './toDo.css';
+import { Task } from "./types";
+import { AddTaskModal } from "./AddTaskModal";
+import { ListMenu } from "./ListMenu";
 
-interface Task {
-  title: string;
-  completed: boolean;
-}
-
-interface ToDoProps {
-  showModal:(value: boolean)=> void
-  handleCreateTask: (title: string) => void;
-}
-
-interface ListMenuProps {
-  index: number;
-  handleCompleted: (index: number) => void;
-  handleDelete: (index: number) => void;
-}
-
-const AddTaskModal = ({ handleCreateTask,showModal }: ToDoProps) => {
-  const [taskTitle, setTaskTitle] = useState<string>("");
-  const [itsWrong,setItsWrong] = useState<boolean>(false)
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskTitle(e.target.value);
-  };
-
-  const handleAddClick = () => {
-    if(taskTitle === '') {
-      setItsWrong(true)
-    }
-    else {
-      handleCreateTask(taskTitle)
-      setItsWrong(false)
-    }
-  };
-
-  return (
-    <div onClick={(e) => e.stopPropagation()} id="toDoCreationModal" className="creationModal">
-      <h2>New Task</h2>
-      <input style={itsWrong ? {borderColor: '#EC6767'}: {borderColor: '#EDEAE5'}} onChange={handleInputChange} type="text" value={taskTitle} />
-      <div id="buttonsContainer">
-      <button onClick={handleAddClick}>Add</button>
-      <button onClick={()=>showModal(false)}>Cancel</button>
-      </div>
-    </div>
-  );
-};
-
-const ListMenu = ({ index, handleCompleted, handleDelete }: ListMenuProps) => {
-  return (
-    <div className="menu" onClick={(e)=>{
-      e.stopPropagation()
-    }}>
-      <button onClick={() => handleCompleted(index)}>Completed</button>
-      <button onClick={() => handleDelete(index)}>Delete</button>
-    </div>
-  );
-};
-
-const ToDo = () => {
+export const ToDo = () => {
   const [showAddTaskModal, setShowAddTaskModal] = useState<boolean>(false);
   const [allTasks, setAllTasks] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem('toDo');
@@ -133,5 +79,3 @@ const ToDo = () => {
     </section >
   );
 };
-
-export default ToDo;

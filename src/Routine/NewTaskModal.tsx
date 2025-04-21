@@ -2,12 +2,13 @@ import { useEffect ,useState} from "react";
 import { Select } from "../components/Select";
 
 interface CreationModalProps {
-    setCurrentMenuIndex:number
-    setShowModal: (value:boolean|null) => void;
-    setAllTasks:(tasks: Task[])=> void
-    allTasks:Task[]
-    index?: number | null;
-  }
+  setCurrentMenuIndex: (index: number | null) => void;
+  setShowModal: (value: boolean | null) => void;
+  setAllTasks: (tasks: Task[]) => void;
+  allTasks: Task[];
+  index?: number | null;
+}
+
   interface Task {
     description: string;
     hour: string;
@@ -19,7 +20,6 @@ export const NewTaskModal = ({ index,allTasks,setAllTasks,setShowModal,setCurren
     const [description, setDescription] = useState<string>('');
     const [hour, setHour] = useState<string>('');
     const [minutes, setMinutes] = useState<string>('');
-    const [itsWrong,setItsWrong] = useState<boolean>(false)
 
     const hoursOptions = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
     const minutesOptions = Array.from({ length: 61 }, (_, i) => (i).toString().padStart(2, '0'));
@@ -35,24 +35,23 @@ export const NewTaskModal = ({ index,allTasks,setAllTasks,setShowModal,setCurren
         setHour('10');
         setMinutes('30');
       }
-    }, [index, allTasks]);
+    }, [index]);
 
     const handleSubmit = () => {
-      if(description === '') {
-        setItsWrong(true)
+      if (!description.trim()) {
+        return; 
       }
-      else {
-        const updatedTasks = [...allTasks];
-        if (index !== null && index !== undefined) {
-          updatedTasks[index] = { description, hour, minutes, completed: null };
-        } else {
-          updatedTasks.push({ description, hour, minutes, completed: null });
-        }
-        setAllTasks(updatedTasks);
-        setShowModal(false);
-        setCurrentMenuIndex(null);
-        setItsWrong(false)
+
+      const updatedTasks = [...allTasks];
+      if (index !== null && index !== undefined) {
+        updatedTasks[index] = { description, hour, minutes, completed: null };
+      } else {
+        updatedTasks.push({ description, hour, minutes, completed: null });
       }
+      
+      setAllTasks(updatedTasks);
+      setShowModal(false);
+      setCurrentMenuIndex(null);
     };
 
     return (
@@ -61,7 +60,7 @@ export const NewTaskModal = ({ index,allTasks,setAllTasks,setShowModal,setCurren
       }} id="routineModal" className="creationModal" >
         <h2>New Task</h2>
         <textarea
-          style={itsWrong ? {borderColor: '#EC6767'}: {borderColor: '#EDEAE5'}}
+          style={{ borderColor: description.trim() ? '#EDEAE5' : '#EC6767' }}
           placeholder="Description"
           onChange={(e) => setDescription(e.target.value)}
           value={description}

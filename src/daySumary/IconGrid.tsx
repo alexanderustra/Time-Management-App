@@ -21,12 +21,10 @@ function IconGrid({ onClick }: IconGridProps) {
 
       <div className={styles.gridContainer}>
         {Object.entries(iconData).map(([category, icons]) => {
-          // Filtrar íconos según el término de búsqueda
           const filteredIcons = icons.filter((iconName) =>
             iconName.toLowerCase().includes(searchTerm)
           );
 
-          // Si no hay íconos que coincidan, no renderizar la categoría
           if (filteredIcons.length === 0) return null;
 
           return (

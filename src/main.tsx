@@ -1,10 +1,10 @@
-import React, {createContext, useState, useEffect } from "react";
+import React from "react";
 import { TimerProvider } from "./TimeOut/TimerContext.tsx";
 import ReactDOM from 'react-dom/client'
 import { Routine } from './Routine/Routine.tsx'
 import { ClockBar } from './components/ClockBar/ClockBar.tsx'
 import {Notes} from './Notes/Notes.tsx'
-import ToDo from './toDo/ToDo.tsx'
+import {ToDo} from './toDo/ToDo.tsx'
 
 import './App.css'
 import { DaySummary } from './daySumary/DaySummary.tsx'

@@ -1,80 +1,32 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState} from "react";
 import './notes.css';
+import { useNotes } from "./useNotes";
 import { NoteModal } from "./CreationModal";
 import { OpenNoteModal } from "./OpenNoteModal";
-
-interface Note {
-  title: string;
-  description: string;
-  pinned: boolean;
-  color: string;
-}
-
-interface NoteMenuProps {
-  handleDelete: () => void;
-  handlePinToggle: () => void;
-  isPinned: boolean;
-}
-
-const NoteMenu = ({ handleDelete, handlePinToggle, isPinned }: NoteMenuProps) => (
-  <div className="menu" onClick={(e) => e.stopPropagation()}>
-    <button onClick={handlePinToggle}>{isPinned ? 'Unpin' : 'Pin Up'}</button>
-    <button>Color</button>
-    <button onClick={handleDelete}>Delete</button>
-  </div>
-);
+import NotesList from "./NotesList";
 
 
 export const Notes = () => {
+  const { allNotes, setAllNotes, createNote, deleteNote, togglePin } = useNotes();
+  
   const [showNoteModal, setShowNoteModal] = useState<boolean>(false);
-  const [allNotes, setAllNotes] = useState<Note[]>(() => JSON.parse(localStorage.getItem('notes') || '[]'));
   const [currentMenuIndex, setCurrentMenuIndex] = useState<number | null>(null);
-  const [openNoteIndex, setOpenNoteIndex] = useState<number | null>(null); 
-
-  useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(allNotes));
-  }, [allNotes]);
-
-  const handleCreateNote = useCallback((title: string, description: string) => {
-    setShowNoteModal(false);
-    setAllNotes((prevNotes) => [
-      ...prevNotes,
-      { title, description, pinned: false, color: "#00638D" }
-    ]);
-  }, []);
-
-  const handleDelete = useCallback((index: number) => {
-    setCurrentMenuIndex(null);
-    setOpenNoteIndex(null);
-    setAllNotes((prevNotes) => prevNotes.filter((_, i) => i !== index));
-  }, []);
-
-  const handlePinToggle = useCallback((index: number) => {
-    setAllNotes((prevNotes) => {
-      const updatedNotes = [...prevNotes];
-      const note = updatedNotes[index];
-      note.pinned = !note.pinned;
-      updatedNotes.splice(index, 1);
-      note.pinned ? updatedNotes.unshift(note) : updatedNotes.push(note);
-      return updatedNotes;
-    });
-    setCurrentMenuIndex(null);
-  }, []);
+  const [openNoteIndex, setOpenNoteIndex] = useState<number | null>(null);
 
   const handleNoteMenu = (e: React.MouseEvent, index: number) => {
     e.preventDefault();
     setCurrentMenuIndex(index);
-    setOpenNoteIndex(null); 
+    setOpenNoteIndex(null);
   };
 
   const handleNoteClick = (index: number) => {
     setOpenNoteIndex(index);
-    setCurrentMenuIndex(null); 
+    setCurrentMenuIndex(null);
   };
 
-  const handleCloseNote = useCallback(() => {
+  const handleCloseNote = () => {
     setOpenNoteIndex(null);
-  }, []);
+  };
 
   const pinnedNotes = allNotes.filter(note => note.pinned);
   const unpinnedNotes = allNotes.filter(note => !note.pinned);
@@ -82,44 +34,18 @@ export const Notes = () => {
   return (
     <div onClick={() => setCurrentMenuIndex(null)}>
       <h2 className="titleH2">Notes</h2>
-      <ul id="notesContainer">
-        {pinnedNotes.map((note, index) => (
-          <li key={index}
-            onClick={() => handleNoteClick(index)} 
-            onContextMenu={(e) => handleNoteMenu(e, index)}
-          >
-            <h3>{note.title}</h3>
-            <hr />
-            <p>{note.description}</p>
-            {currentMenuIndex === index && (
-              <NoteMenu
-                handleDelete={() => handleDelete(index)}
-                handlePinToggle={() => handlePinToggle(index)}
-                isPinned={true}
-              />
-            )}
-          </li>
-        ))}
-
-        {unpinnedNotes.map((note, index) => (
-          <li key={pinnedNotes.length + index}
-            onClick={() => handleNoteClick(pinnedNotes.length + index)} 
-            onContextMenu={(e) => handleNoteMenu(e, pinnedNotes.length + index)}
-          >
-            <h3>{note.title}</h3>
-            <hr />
-            <p>{note.description}</p>
-            {currentMenuIndex === pinnedNotes.length + index && (
-              <NoteMenu
-                handleDelete={() => handleDelete(pinnedNotes.length + index)}
-                handlePinToggle={() => handlePinToggle(pinnedNotes.length + index)}
-                isPinned={false}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
-      {showNoteModal && <NoteModal showModal={setShowNoteModal} handleCreateNote={handleCreateNote} />}
+      
+      <NotesList
+        pinnedNotes={pinnedNotes}
+        unpinnedNotes={unpinnedNotes}
+        currentMenuIndex={currentMenuIndex}
+        handleNoteClick={handleNoteClick}
+        handleNoteMenu={handleNoteMenu}
+        handleDelete={deleteNote}
+        handlePinToggle={togglePin}
+      />
+      
+      {showNoteModal && <NoteModal showModal={setShowNoteModal} handleCreateNote={createNote} />}
       <button
         className="closedModalBtn"
         onClick={(e) => {
@@ -129,6 +55,7 @@ export const Notes = () => {
       >
         New Note
       </button>
+
       {openNoteIndex !== null && allNotes[openNoteIndex] && (
         <OpenNoteModal
           note={allNotes[openNoteIndex]}
