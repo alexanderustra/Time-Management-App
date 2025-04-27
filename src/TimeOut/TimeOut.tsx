@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { useTimer } from './TimerContext';
-import TimerView from './TimerRender';
-import { useCountdownTimer } from './useCountdownTimer';
+import { useTimer } from './components/TimerContext';
+import TimerView from './components/TimerRender';
+import { useCountdownTimer } from './hooks/useCountdownTimer';
 
 export const TimeOut = () => {
     const [showModal,setShowModal] = useState(false)
@@ -19,8 +19,8 @@ export const TimeOut = () => {
         return timerOnLocal ? JSON.parse(timerOnLocal) : false;
     });
     
-    const intervalRef = useRef(null); // Referencia para el intervalo
-    const pausedRef = useRef(paused); // Referencia para la pausa
+    const intervalRef = useRef(null); 
+    const pausedRef = useRef(paused); 
     // Calcula horas, minutos y segundos
     const hours = Math.floor(timeLeft / 3600);
     const minutes = Math.floor((timeLeft % 3600) / 60);
@@ -28,6 +28,9 @@ export const TimeOut = () => {
 
     const { startTimer } = useCountdownTimer(paused, setPaused, setTimeLeft, setElapsed);
 
+    useEffect(()=>{
+        console.log(paused)
+    },[paused])
       
     // Formatea el tiempo restante
     const formattedTime = hours > 0 
@@ -46,7 +49,6 @@ export const TimeOut = () => {
     const percentage = (time:number) => (time / timer.end) * 100;
 
     useEffect(() => {
-        
         if (timeLeft === 0 && soundEnabled) {
             handleSoundEffects();   
         }
@@ -61,16 +63,19 @@ export const TimeOut = () => {
     
     
     const handleDelete =()=>{
-        setTimerOn(false)
-    }
+        setTimerOn(false);
+        setPaused(() => {
+            localStorage.setItem('paused', JSON.stringify(false));
+            pausedRef.current = false;
+            return false;
+        });
+    }; 
     const handlePause = () => {
-        // Alternar el estado de paused
         setPaused((prevPaused) => {
             const newPaused = !prevPaused;
-            // Actualizar localStorage con el nuevo valor de paused
             localStorage.setItem('paused', JSON.stringify(newPaused));
-            pausedRef.current = newPaused; // Actualizar el ref con el nuevo valor
-            return newPaused; // Devolver el nuevo valor del estado
+            pausedRef.current = newPaused; 
+            return newPaused; 
         });
     };
     

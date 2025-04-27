@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import './toDo.css';
-import { Task } from "./types";
-import { AddTaskModal } from "./AddTaskModal";
-import { ListMenu } from "./ListMenu";
+import { Task } from "./types/types";
+import { AddTaskModal } from "./components/AddTaskModal";
+import { ListMenu } from "./components/ListMenu";
 
 export const ToDo = () => {
   const [showAddTaskModal, setShowAddTaskModal] = useState<boolean>(false);

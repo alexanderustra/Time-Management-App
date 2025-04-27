@@ -1,5 +1,5 @@
 import React from "react";
-import { TimerProvider } from "./TimeOut/TimerContext.tsx";
+import { TimerProvider } from "./TimeOut/components/TimerContext.tsx";
 import ReactDOM from 'react-dom/client'
 import { Routine } from './Routine/Routine.tsx'
 import { ClockBar } from './components/ClockBar/ClockBar.tsx'

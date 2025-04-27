@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from "../../components/Select"; // o ajustá la ruta según tu estructura
-import { Data } from "../types";
+import { Data } from "../types/types";
 import styles from '../timeOut.module.css'
 interface Props {
   end: number;

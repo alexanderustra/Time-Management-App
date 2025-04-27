@@ -1,9 +1,9 @@
 import { useState} from "react";
 import './notes.css';
-import { useNotes } from "./useNotes";
-import { NoteModal } from "./CreationModal";
-import { OpenNoteModal } from "./OpenNoteModal";
-import NotesList from "./NotesList";
+import { useNotes } from "./hooks/useNotes";
+import { NoteModal } from "./components/CreationModal";
+import { OpenNoteModal } from "./components/OpenNoteModal";
+import NotesList from "./components/NotesList";
 
 
 export const Notes = () => {

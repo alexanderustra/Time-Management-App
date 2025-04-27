@@ -1,9 +1,9 @@
 import  { useState, useEffect} from "react";
 import './routine.css';
-import { NewTaskModal } from "./NewTaskModal";
-import { Task } from './types';
-import { TaskListItem } from "./TaskList";
-import { useDailyReset } from "./useDailyReset";
+import { NewTaskModal } from "./components/NewTaskModal";
+import { Task } from './types/types';
+import { TaskListItem } from "./components/TaskList";
+import { useDailyReset } from "./hooks/useDailyReset";
 
 export const Routine = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
