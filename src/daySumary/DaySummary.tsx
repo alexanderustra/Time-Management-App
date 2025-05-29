@@ -55,23 +55,39 @@ export const DaySummary = () => {
   }, []);
   
   useEffect(() => {
+  const now = new Date();
+  const today = now.toLocaleDateString();
+  const lastUpdated = localStorage.getItem("lastUpdatedDate");
+
+  if (!lastUpdated || lastUpdated !== today) {
+    setActivities((prev) =>
+      prev.map((activity) =>
+        activity.active
+          ? { ...activity, day: today }
+          : { ...activity, totalDuration: 0, active: false }
+      )
+    );
+
+    localStorage.setItem("lastUpdatedDate", today);
+  }
+  }, []); 
+
+  useEffect(() => {
     const now = new Date();
     const today = now.toLocaleDateString();
-    const currentDay = now.toLocaleDateString(); // Día actual en formato "MM/DD/YYYY"
+    const currentDay = now.toLocaleDateString();
     const lastUpdated = localStorage.getItem("lastUpdatedDate");
   
-    // Si no hay registro o es un nuevo día
     if (!lastUpdated || lastUpdated !== today) {
       // Actualiza el resumen diario
       setActivities((prev) =>
         prev.map((activity) =>
           activity.active
-            ? { ...activity, day: currentDay } // Actualiza `day` para las actividades activas
-            : { ...activity, totalDuration: 0, active: false } // Limpia las inactivas
+            ? { ...activity, day: currentDay }
+            : { ...activity, totalDuration: 0, active: false } 
         )
       );
   
-      // Limpia el resumen semanal solo una vez el domingo
       if (now.getDay() === 0) {
         setWeeklySummary((prev) =>
           Object.fromEntries(
@@ -83,30 +99,9 @@ export const DaySummary = () => {
         localStorage.setItem("weeklySummary", JSON.stringify(weeklySummary));
       }
   
-      // Guarda la nueva fecha en localStorage
       localStorage.setItem("lastUpdatedDate", today);
     }
   }, [activities, weeklySummary]);
-  
-
-  // Actualiza los resúmenes diariamente y semanalmente
-  useEffect(() => {
-    const updateSummaries = () => {
-      const updatedWeeklySummary = groupByActivity(activities);
-      setWeeklySummary(updatedWeeklySummary);
-      localStorage.setItem("weeklySummary", JSON.stringify(updatedWeeklySummary));
-     
-      const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
-    
-      const updatedDailySummary = groupByActivity(
-        activities.filter((activity) => activity.day === today)
-      );
-      setDailySummary(updatedDailySummary);
-      localStorage.setItem("dailySummary", JSON.stringify(updatedDailySummary));
-    };
-
-    updateSummaries();
-  }, [activities]);
 
   // Reinicia actividades al llegar la medianoche
   useEffect(() => {
@@ -127,12 +122,10 @@ export const DaySummary = () => {
     return () => clearInterval(interval);
   }, []);
  
-  // Guarda actividades creadas en localStorage
   useEffect(() => {
     localStorage.setItem("activities", JSON.stringify(createdActivities));
   }, [createdActivities]);
 
-  // Guarda actividades actualizadas en localStorage
   useEffect(() => {
     localStorage.setItem("savedActivities", JSON.stringify(activities));
   }, [activities]);
@@ -168,7 +161,29 @@ export const DaySummary = () => {
     }, {});
   }, [calculateDuration]);
 
-  // Manejo de clicks en íconos
+  useEffect(() => {
+  const updateSummaries = () => {
+    const updatedWeeklySummary = groupByActivity(activities);
+    setWeeklySummary(updatedWeeklySummary);
+    localStorage.setItem("weeklySummary", JSON.stringify(updatedWeeklySummary));
+
+    const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+
+    const updatedDailySummary = groupByActivity(
+      activities.filter((activity) => activity.day === today)
+    );
+    setDailySummary(updatedDailySummary);
+    localStorage.setItem("dailySummary", JSON.stringify(updatedDailySummary));
+  };
+
+  updateSummaries(); // Ejecuta inmediatamente
+
+  const interval = setInterval(updateSummaries, 60000); // Ejecuta cada minuto
+
+  return () => clearInterval(interval); // Limpia al desmontar
+}, [activities, groupByActivity]);
+
+
   const handleIconClick = useCallback(
     (activity: StoredActivity) => {
       setActivities((prev:any) => {
