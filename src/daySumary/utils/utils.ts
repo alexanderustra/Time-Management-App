@@ -9,7 +9,6 @@ export const calculateDuration = (start: string, end?: string): number => {
     return hours * 60 + minutes;
   };
 
-
   const startMinutes = convertToMinutes(start);
   const endMinutes = end
     ? convertToMinutes(end)
@@ -19,6 +18,14 @@ export const calculateDuration = (start: string, end?: string): number => {
     ? endMinutes - startMinutes
     : 1440 - startMinutes + endMinutes;
 };
+
+export const getWeekNumber = (date: Date) => {
+  const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+  const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
+  return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+};
+
+
 export const getRandomPastelHex = (): string => {
   const randomValue = () => Math.floor(127 + Math.random() * 128); 
   const toHex = (value: number) => value.toString(16).padStart(2, "0"); 

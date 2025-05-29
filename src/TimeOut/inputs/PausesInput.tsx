@@ -1,4 +1,3 @@
-import React from "react";
 import { Select } from "../../components/Select";
 import styles from '../timeOut.module.css'
 interface Pause {

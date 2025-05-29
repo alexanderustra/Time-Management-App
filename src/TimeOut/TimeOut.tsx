@@ -19,18 +19,13 @@ export const TimeOut = () => {
         return timerOnLocal ? JSON.parse(timerOnLocal) : false;
     });
     
-    const intervalRef = useRef(null); 
     const pausedRef = useRef(paused); 
     // Calcula horas, minutos y segundos
     const hours = Math.floor(timeLeft / 3600);
     const minutes = Math.floor((timeLeft % 3600) / 60);
     const seconds = timeLeft % 60;
 
-    const { startTimer } = useCountdownTimer(paused, setPaused, setTimeLeft, setElapsed);
-
-    useEffect(()=>{
-        console.log(paused)
-    },[paused])
+    const { startTimer } = useCountdownTimer(paused, setTimeLeft, setElapsed);
       
     // Formatea el tiempo restante
     const formattedTime = hours > 0 
@@ -52,15 +47,13 @@ export const TimeOut = () => {
         if (timeLeft === 0 && soundEnabled) {
             handleSoundEffects();   
         }
-        if (timer.timelines.some(timeline => timeline.time !== 0 && timeline.time === elapsed)) {
+        if (timer?.timelines?.some(timeline => timeline.time !== 0 && timeline.time === elapsed)) {
             handleSoundEffects();   
         }
-        if (timer.pauses.some(pause => pause.start !== 0 && pause.start === elapsed || pause.end !== 0 && pause.end === elapsed)) {
+        if (timer?.pauses?.some(pause => (pause.start !== 0 && pause.start === elapsed) || (pause.end !== 0 && pause.end === elapsed))) {
              handleSoundEffects();   
         }
-        
-    }, [elapsed]); 
-    
+    }, [elapsed]);    
     
     const handleDelete =()=>{
         setTimerOn(false);
@@ -71,7 +64,7 @@ export const TimeOut = () => {
         });
     }; 
     const handlePause = () => {
-        setPaused((prevPaused) => {
+        setPaused((prevPaused:any) => {
             const newPaused = !prevPaused;
             localStorage.setItem('paused', JSON.stringify(newPaused));
             pausedRef.current = newPaused; 

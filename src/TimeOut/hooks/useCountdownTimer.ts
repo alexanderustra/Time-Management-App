@@ -3,18 +3,15 @@ import { useTimer } from '../components/TimerContext';
 
 export const useCountdownTimer = (
   paused: boolean,
-  setPaused: React.Dispatch<React.SetStateAction<boolean>>,
   setTimeLeftExternal: (val: number) => void,
   setElapsedExternal: (val: number) => void
 ) => {
-  const { timer, setTimer } = useTimer();
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const {setTimer } = useTimer();
+  const intervalRef = useRef<number | null>(null);
   const pausedRef = useRef(paused);
 
   useEffect(() => {
     pausedRef.current = paused;
-    console.log('starts')
-    console.log(paused)
   }, [paused]);
 
   const startTimer = () => {

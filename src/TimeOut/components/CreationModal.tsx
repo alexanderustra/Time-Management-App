@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTimer } from "./TimerContext";
-import { Select } from "../../components/Select";
 import styles from '../timeOut.module.css'
 import { validateInputs,hoursOptions,minutesOptions } from "../utils/utils";
 import { CreationModalProps } from "../types/types";
@@ -92,8 +91,8 @@ export const CreationModal = ({ setShowModal,setTimerOn }: CreationModalProps) =
         end={data.end}
         setData={setData}
         error={errors.end}
-        hoursOptions={hoursOptions}
-        minutesOptions={minutesOptions}
+        hoursOptions={hoursOptions.map(Number)}
+        minutesOptions={minutesOptions.map(Number)}
       />
   
       <h2>Timelines</h2>
@@ -104,8 +103,8 @@ export const CreationModal = ({ setShowModal,setTimerOn }: CreationModalProps) =
         handleChange={handleChange}
         handleTimeChange={handleTimeChange}
         handleAddTimeline={handleAddTimeline}
-        hoursOptions={hoursOptions}
-        minutesOptions={minutesOptions}
+        hoursOptions={hoursOptions.map(Number)}
+        minutesOptions={minutesOptions.map(Number)}
       />
   
       <h2>Pauses</h2>
@@ -114,8 +113,8 @@ export const CreationModal = ({ setShowModal,setTimerOn }: CreationModalProps) =
       errors={errors.pauses}
       handleTimeChange={handleTimeChange}
       handleAddPause={handleAddPause}
-      hoursOptions={hoursOptions}
-      minutesOptions={minutesOptions}
+      hoursOptions={hoursOptions.map(Number)}
+      minutesOptions={minutesOptions.map(Number)}
     />
       <button onClick={handleAddPause}>New</button>
       <button onClick={() => setShowModal(false)}>Close</button>

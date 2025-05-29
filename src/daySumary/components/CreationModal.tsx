@@ -3,23 +3,12 @@ import { useMemo } from "react";
 import IconGrid from "./IconGrid";
 import styles from '../daySumary.module.css'
 import { getRandomPastelHex } from "../utils/utils";
-interface Activity {
-  name: string;
-  icon: string;
-  color: string; 
-}
-type SetActivities = React.Dispatch<React.SetStateAction<Activity[]>>;
 
-interface CreationModalProps {
-  setActive: (value: boolean) => void;
-  setCreatedActivities: SetActivities;
-}
-
-export const CreationModal = ({ setCreatedActivities,setActive }: CreationModalProps) => {
+export const CreationModal = ({ setCreatedActivities,setActive }:any) => {
 
   const [showIconGrid, setShowIconGrid] = useState(false);
   const randomColor = useMemo(() => getRandomPastelHex(), []);
-  const [activityInfo, setActivityInfo] = useState<Activity>({
+  const [activityInfo, setActivityInfo] = useState({
     name: "",
     icon: "",
     color: randomColor, 
@@ -31,7 +20,7 @@ export const CreationModal = ({ setCreatedActivities,setActive }: CreationModalP
 
   const handleClick = () => {
     if (activityInfo.name && activityInfo.icon) {
-      setCreatedActivities((prev) => [...prev, activityInfo]);
+      setCreatedActivities((prev:any) => [...prev, activityInfo]);
       setActivityInfo({
         name: "",
         icon: "",

@@ -4,7 +4,7 @@ interface ContextMenuProps {
   showMenu: boolean;
   handleDeleteActivity: (index: number) => void;
   indexToDelete: number | null;
-  setIndexToDelete: (index: number) => void;
+  setIndexToDelete: (index: number | null) => void;
   setShowMenu: (show: boolean) => void;
 }
 

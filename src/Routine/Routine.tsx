@@ -60,7 +60,7 @@ export const Routine = () => {
         ))}
       </ul>
       {showModal && <NewTaskModal allTasks={allTasks} 
-      setCurrentMenuIndex={currentMenuIndex} 
+      setCurrentMenuIndex={setCurrentMenuIndex}
       setAllTasks={setAllTasks} 
       index={currentMenuIndex} 
       setShowModal={setShowModal} />}

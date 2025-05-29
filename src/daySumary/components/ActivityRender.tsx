@@ -2,30 +2,10 @@ import * as FaIcons from "react-icons/fa";
 import styles from '../daySumary.module.css'
 import { Activity } from "../types/types";
 
-interface ActivitiesProp {
-  name: string;
-  color: string;
-  startTime: string;
-  endTime?: string;
-  day: string;
-  active: boolean;
-  totalDuration: number;
-  icon: keyof typeof FaIcons; 
-}
-
-interface StoredActivity {
-  name: string;
-  startTime: string;
-  endTime?: string;
-  day: string;
-  color: string;
-  icon: keyof typeof FaIcons;
-}
-
 interface Props {
-  createdActivities: StoredActivity[];
-  activities: Activity[];
-  onIconClick: (activity: StoredActivity) => void;
+  createdActivities: Activity[]; 
+  activities: Activity[]; 
+  onIconClick: (activity: Activity) => void;
   onContextMenu: (index: number, event: React.MouseEvent<HTMLElement>) => void; 
 }
 
@@ -41,7 +21,7 @@ export const ActivityIconList = ({
         const isActive = activities.some(
           (a) => a.name === activity.name && a.active
         );
-        const IconComponent = FaIcons[activity.icon];
+        const IconComponent = FaIcons[activity.icon as keyof typeof FaIcons] as React.ElementType;
 
         return (
           <li key={index} onContextMenu={(e) => onContextMenu(index, e)}>

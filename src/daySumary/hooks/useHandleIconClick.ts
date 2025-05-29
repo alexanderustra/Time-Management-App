@@ -1,10 +1,10 @@
 import { useCallback } from "react";
-import { ActivitiesProp, Activity } from "../types/types";
+import { Activity } from "../types/types";
 import { formatTime, calculateDuration } from "../utils/utils";
 
 export const useHandleIconClick = (setActivities: any) => {
     return useCallback(
-      (activity: ActivitiesProp) => {
+      (activity: Activity) => {
         setActivities((prev:Activity[]) => {
           const existingActivity = prev.find((a) => a.name === activity.name);
   
@@ -16,13 +16,13 @@ export const useHandleIconClick = (setActivities: any) => {
                   ? {
                       ...a,
                       active: false,
-                      totalDuration: a.totalDuration + duration,
+                      totalDuration: (a.totalDuration ?? 0) + duration
                     }
                   : a
               );
             }
             return prev.map((a) =>
-              a.name === activity.name
+              a.name === activity.name 
                 ? {
                     ...a,
                     active: true,

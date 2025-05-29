@@ -3,7 +3,7 @@ import { Select } from "../../components/Select";
 
 interface CreationModalProps {
   setCurrentMenuIndex: (index: number | null) => void;
-  setShowModal: (value: boolean | null) => void;
+  setShowModal: (value: boolean) => void;
   setAllTasks: (tasks: Task[]) => void;
   allTasks: Task[];
   index?: number | null;

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ActivitiesProp } from "../types/types";
+import { Activity } from "../types/types";
 
 export const useTimeUtils = (currentTime: Date) => {
   const convertToMinutes = useCallback((time: string): number => {
@@ -22,7 +22,7 @@ export const useTimeUtils = (currentTime: Date) => {
   );
 
   const groupByActivity = useCallback(
-    (activities: ActivitiesProp[]) => {
+    (activities: Activity[]) => {
       return activities.reduce<Record<string, number>>((acc, activity) => {
         const duration = (activity.totalDuration || 0) + 
           (activity.active ? calculateDuration(activity.startTime) : 0);
