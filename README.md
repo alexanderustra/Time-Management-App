@@ -1,27 +1,31 @@
-# React + TypeScript + Vite
+# 🕒 Página de Gestión del Tiempo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta herramienta surge de la necesidad de centralizar funcionalidades clave que suelen encontrarse dispersas en distintas aplicaciones de gestión de tiempo y tareas. El objetivo es ofrecer una solución integral, accesible y eficiente desde un solo entorno.
 
-Currently, two official plugins are available:
+## 🌐 Sitio en producción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [alexanderustra.github.io/Time-Management-App](https://alexanderustra.github.io/Time-Management-App/)
 
-## Expanding the ESLint configuration
+## ⚙️ Tecnologías utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React** + **TypeScript**
+- **Vite** como bundler
+- **CSS Modules** para el estilo modular
+- **LocalStorage** para persistencia de datos
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Características
+- Rutinas con estados dinámicos
+- Seguimiento de actividades diarias/semanales
+- Timer con alarmas y pausas
+- Notas fijables
+- Barra visual de progreso del día
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 🧪 Instalación local
+
+
+```bash
+git clone https://github.com/AlexanderUstra/Time-Management-App.git
+cd Time-Management-App
+npm install
+npm run dev
